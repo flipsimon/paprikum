@@ -1,4 +1,5 @@
 // display test: write some data to the lcd
+//TESTOMATIKO
 
 /* Connections:
  R/S : Pin 3
