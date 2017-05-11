@@ -1,0 +1,74 @@
+int PinA1 = 10;
+int PinA2 = 11;
+int PinB1 = 6;
+int PinB2 = 9;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(PinA1, OUTPUT);
+  pinMode(PinA2, OUTPUT);
+  pinMode(PinB1, OUTPUT);
+  pinMode(PinB2, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  setMotorSpeed(true, 100, 3);
+  delay(1200);
+  setMotorSpeed(false, 60, 0);
+  delay(500);
+  setMotorSpeed(false, 60, 1);
+  delay(1200);
+  setMotorSpeed(true, 60, 1);
+  delay(1200);
+}
+
+void setMotorSpeed(boolean forward, uint8_t spd, uint8_t motors) {
+  if (motors == 0) {
+    digitalWrite(PinA1, LOW);
+    digitalWrite(PinA2, LOW);
+    digitalWrite(PinB1, LOW);
+    digitalWrite(PinB2, LOW);
+  }
+  else {
+    if (forward) {
+      if (motors == 1) {
+      analogWrite(PinA1, spd);
+      digitalWrite(PinA2, LOW);
+      digitalWrite(PinB1, LOW);
+      digitalWrite(PinB2, LOW);
+    } else if (motors == 2) {
+      digitalWrite(PinA1, LOW);
+      digitalWrite(PinA2, LOW);
+      analogWrite(PinB1, spd);
+      digitalWrite(PinB2, LOW);
+    } else if (motors ==3) {
+      analogWrite(PinA1, spd);
+      digitalWrite(PinA2, LOW);
+      analogWrite(PinB1, spd);
+      digitalWrite(PinB2, LOW);
+    }
+    }
+  else {
+    if (motors == 1) {
+      digitalWrite(PinA1, LOW);
+      analogWrite(PinA2, spd);
+      digitalWrite(PinB1, LOW);
+      digitalWrite(PinB2, LOW);
+    } else if (motors == 2) {
+      digitalWrite(PinA1, LOW);
+      digitalWrite(PinA2, LOW);
+      digitalWrite(PinB1, LOW);
+      analogWrite(PinB2, spd);
+    } else if (motors ==3) {
+      digitalWrite(PinA1, LOW);
+      analogWrite(PinA2, spd);
+      digitalWrite(PinB1, LOW);
+      analogWrite(PinB2, spd);
+    }      
+    
+  } 
+}
+}
+
+
